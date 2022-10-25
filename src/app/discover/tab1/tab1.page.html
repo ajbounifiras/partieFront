@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Discover</ion-title>
+    <a slot="end" style="margin:10%;" routerLink="/add-offer">+</a>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment (ionChange)="segmentChanged($event)" value="list">
+    <ion-segment-button value="cars">
+      <ion-label>
+        All cars
+      </ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="favorites">
+      <ion-label>
+        favorites
+      </ion-label>
+    </ion-segment-button>
+  </ion-segment>
+ 
+  <ion-list
+    class="animate__animated animate__slideInUp animate__fast"
+    *ngIf="segment === 'cars'"
+  >
+   <!-- first item card -->
+   <ion-card *ngIf="carsData[0]">
+    <img alt="{{ carsData[0]?.name}}" src="{{ carsData[0]?.img}}" width="100%"/>
+    <ion-card-header>
+      <ion-card-title>{{ carsData[0]?.model}} {{ carsData[0]?.name}}</ion-card-title>
+      <ion-card-subtitle>{{ carsData[0]?.prix}} dt</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <div class="ion-text-center">
+        <a [routerLink]="['/single-car/', carsData[0]?.id ]">View Details</a>
+      </div>
+    </ion-card-content>
+  </ion-card>
+    <ion-item *ngFor="let item of carsData; let index = index">
+      <ion-thumbnail slot="start" *ngIf="index>0">
+        <ion-img [src]="item.img"></ion-img>
+      </ion-thumbnail>
+      <ion-label *ngIf="index>0">{{ item?.model }} {{ item?.name }}</ion-label>
+      <a *ngIf="index>0" [routerLink]="['/single-car', item.id ]"><ion-icon name="chevron-forward-outline"></ion-icon></a>
+    </ion-item>
+  </ion-list>
+
+  <div
+    class="animate__animated animate__slideInUp animate__fast"
+    *ngIf="segment === 'favorites'"
+  >
+  <ion-item *ngFor="let item of listFav; let index = index">
+    <ion-thumbnail slot="start">
+      <ion-img [src]="item.img"></ion-img>
+    </ion-thumbnail>
+    <ion-label>{{ item?.model }} {{ item?.name }}</ion-label>
+    <a [routerLink]="['/single-car', item.id ]"><ion-icon name="chevron-forward-outline"></ion-icon></a>
+  </ion-item>
+  </div>
+</ion-content>

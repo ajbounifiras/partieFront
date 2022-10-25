@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>addOffer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+  <ion-item>
+    <ion-label>Name</ion-label>
+    <ion-input placeholder="Enter name" name="login" [(ngModel)]="car.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Model</ion-label>
+    <ion-input placeholder="Enter model" name="modl" [(ngModel)]="car.model"></ion-input>
+  </ion-item>
+  <ion-button (click)="addOffer()">add</ion-button>
+  
+</ion-list>
+</ion-content>

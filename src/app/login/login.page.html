@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>usename</ion-label>
+      <ion-input placeholder="Enter username" name="login" [(ngModel)]="user.login"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input type="password" placeholder="Enter password" name="password" [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+    <ion-button (click)="login()">Login</ion-button>
+    <ion-item *ngIf="erreur">
+      <ion-label>login/password incorrect</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
